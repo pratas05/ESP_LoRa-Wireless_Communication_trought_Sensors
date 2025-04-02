@@ -1,48 +1,67 @@
 # Lora Sensor Project
 
 ## Overview
-This project is designed to interface with a LoRa sensor for collecting and transmitting data over long distances using LoRaWAN technology. It provides a robust solution for IoT applications such as environmental monitoring, smart agriculture, and industrial automation.
+This project uses two ESP32 devices for wireless communication via ESP-NOW (using macaddress), where a transmitter device sends the joystick values (X, Y, button) and the distance measured by an ultrasonic sensor HC-SR04 to a receiver device. 
+The receiver displays the data on an OLED screen and activates a buzzer and LEDs if the distance is below certain thresholds.
 
-## Features
-- **LoRaWAN Communication**: Long-range, low-power wireless communication.
-- **Sensor Integration**: Supports various sensors for data collection.
-- **Data Logging**: Logs sensor data locally or transmits it to a cloud server.
-- **Low Power Consumption**: Optimized for battery-powered devices.
-- **Customizable**: Easily extendable for additional sensors or features.
+## Objectives
+- Send joystick and ultrasonic sensor data between ESP32s using ESP-NOW.
 
-## Requirements
-- LoRa module (e.g., SX1276, RFM95)
-- Microcontroller (e.g., ESP32, Arduino)
-- Sensors (e.g., temperature, humidity, pressure)
-- Power source (e.g., battery or USB)
-- LoRaWAN gateway (optional for cloud integration)
+- Display the information on an OLED screen.
 
-## Installation
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/Lora_sensor.git
-    cd Lora_sensor
-    ```
-2. Install dependencies:
-    - For Arduino: Install required libraries via the Arduino Library Manager.
-    - For PlatformIO: Run `pio lib install` to install dependencies.
+- Trigger a buzzer and LEDs based on proximity.
 
-3. Flash the firmware to your microcontroller:
-    ```bash
-    pio run --target upload
-    ```
+- Efficient implementation without the need for traditional Wi-Fi.
 
-## Usage
-1. Connect the LoRa module and sensors to your microcontroller as per the wiring diagram.
-2. Configure the `config.h` file with your LoRaWAN credentials and sensor settings.
-3. Power on the device and monitor the serial output for debugging.
-4. Deploy the device in the desired location for data collection.
+## Components Used
 
-## Configuration
-Edit the `config.h` file to set:
-- LoRaWAN keys and credentials
-- Sensor types and pins
-- Data transmission intervals
+## 🔹 ESP32 Transmitter
+
+- Ultrasonic Sensor HC-SR04
+
+- XY Joystick with button
+
+- OLED Display SSD1306
+
+## 🔹 ESP32 Receiver
+
+- OLED Display SSD1306
+
+- Buzzer
+
+- Red LED (Distance < 10cm)
+
+- Blue LED (Distance < 20cm)
+
+## Installation & Usage
+
+## 🔹 1. Install the required libraries in Arduino IDE
+
+- ESP-NOW (already included in the ESP32 Core)
+
+- Adafruit SSD1306 (for the OLED display)
+
+- Adafruit GFX (for OLED graphics)
+
+## 🔹 2. Configure the Transmitter code
+
+- Upload the transmitter code to the first ESP32.
+
+- Replace the receiver's MAC address.
+
+## 🔹 3. Configure the Receiver code
+
+- Upload the receiver code to the second ESP32.
+
+## 🔹 4. Power both ESP32s and watch the data appear on the receiver's OLED display
+
+## How It Works
+
+- The Transmitter measures distance and reads joystick values.
+
+- Sends this information via ESP-NOW to the Receiver.
+
+- The Receiver displays the data on the OLED and triggers buzzer and LEDs if necessary.
 
 ## Contributing
 Contributions are welcome! Please fork the repository and submit a pull request with your changes.
