@@ -1,7 +1,7 @@
 # Lora Sensor Project
 
 ## Overview
-This project uses two ESP32 devices for wireless communication via ESP-NOW (using macaddress), where a transmitter device sends the joystick values (X, Y, button) and the distance measured by an ultrasonic sensor HC-SR04 to a receiver device. 
+This project uses two ESP32 devices with LoRa integrated for wireless communication via ESP-NOW (using macaddress), where a transmitter device sends the joystick values (press button information and a password defined by the owner) and the distance measured by an ultrasonic sensor HC-SR04 to a receiver device. 
 The receiver displays the data on an OLED screen and activates a buzzer and LEDs if the distance is below certain thresholds.
 
 ## Objectives
